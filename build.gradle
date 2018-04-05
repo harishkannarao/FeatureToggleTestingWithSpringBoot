@@ -1,0 +1,50 @@
+buildscript {
+    repositories {
+        mavenCentral()
+    }
+    dependencies {
+        classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+    }
+}
+
+apply plugin: 'idea'
+apply plugin: 'java'
+apply plugin: 'org.springframework.boot'
+
+sourceCompatibility = "$javaVersion"
+targetCompatibility = "$javaVersion"
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    compile("org.springframework.boot:spring-boot-devtools:${springBootVersion}")
+    compile("org.springframework.boot:spring-boot-starter:${springBootVersion}")
+    compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+    compile("org.springframework.boot:spring-boot-starter-thymeleaf:${springBootVersion}")
+    compile("org.springframework.boot:spring-boot-devtools:${springBootVersion}")
+
+    testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+    testCompile("org.seleniumhq.selenium:selenium-java:${seleniumVersion}")
+}
+
+test {
+    systemProperties(System.getProperties())
+}
+
+bootJar {
+    baseName = 'feature-toggle-testing-with-spring-boot'
+    classifier = "exec"
+    version = "$appVersion"
+}
+
+bootRun {
+    sourceResources sourceSets.main
+}
+
+jar {
+    enabled = true
+    baseName = 'feature-toggle-testing-with-spring-boot'
+    version = "$appVersion"
+}

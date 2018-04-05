@@ -1,0 +1,19 @@
+sudo: required
+dist: trusty
+
+language: java
+
+jdk:
+  - oraclejdk9
+
+install:
+  - sudo apt-get -qq update
+  - sudo apt-get -qq install -y maven
+  - sudo apt-get -qq install -y chromium-browser
+  - sudo apt-get -qq install -y chromium-chromedriver
+  - sudo apt-get -qq install -y libxi6
+  - sudo apt-get -qq install -y libgconf-2-4
+
+script:
+  - mvn clean install --batch-mode -DchromeDriverBinary=/usr/lib/chromium-browser/chromedriver -DchromeBinary=/usr/bin/chromium-browser -DchromeHeadless=true
+  - ./gradlew clean build -DchromeDriverBinary=/usr/lib/chromium-browser/chromedriver -DchromeBinary=/usr/bin/chromium-browser -DchromeHeadless=true
