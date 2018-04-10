@@ -27,6 +27,14 @@ dependencies {
 
     testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
     testCompile("org.seleniumhq.selenium:selenium-java:${seleniumVersion}")
+    testCompile("com.google.guava:guava:${guavaVersion}")
+    testCompile project(':')
+}
+
+configurations.all {
+    resolutionStrategy {
+        force "com.google.guava:guava:${guavaVersion}"
+    }
 }
 
 test {
