@@ -17,4 +17,8 @@ public class HomePage extends AbstractBasePage {
     public Optional<String> getMessage() {
         return super.getElementText("msg");
     }
+
+    public Optional<String> getBannerMessage() {
+        return super.getElementText("bannerMsg");
+    }
 }
