@@ -38,7 +38,9 @@ configurations.all {
 }
 
 test {
-    systemProperties(System.getProperties())
+    systemProperties = System.properties.stringPropertyNames().collectEntries {
+        [(it): System.getProperty(it)]
+    }
 }
 
 bootJar {
@@ -49,6 +51,10 @@ bootJar {
 
 bootRun {
     sourceResources sourceSets.main
+
+    systemProperties = System.properties.stringPropertyNames().collectEntries {
+        [(it): System.getProperty(it)]
+    }
 }
 
 jar {
