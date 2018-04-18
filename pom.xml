@@ -15,6 +15,7 @@
         <spring.boot.version>2.0.0.RELEASE</spring.boot.version>
         <selenium.version>3.8.1</selenium.version>
         <guava.version>22.0</guava.version>
+        <assertj.version>3.9.1</assertj.version>
     </properties>
 
     <build>
@@ -157,6 +158,13 @@
                 <scope>test</scope>
             </dependency>
 
+            <dependency>
+                <groupId>org.assertj</groupId>
+                <artifactId>assertj-core</artifactId>
+                <version>${assertj.version}</version>
+                <scope>test</scope>
+            </dependency>
+
         </dependencies>
     </dependencyManagement>
 
@@ -216,6 +224,11 @@
         <dependency>
             <groupId>com.google.guava</groupId>
             <artifactId>guava</artifactId>
+            <scope>test</scope>
+        </dependency>
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
             <scope>test</scope>
         </dependency>
     </dependencies>

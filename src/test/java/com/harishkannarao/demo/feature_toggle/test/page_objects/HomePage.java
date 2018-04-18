@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static java.util.stream.Collectors.toList;
+import static org.assertj.core.api.Assertions.assertThat;
 
 public class HomePage extends AbstractBasePage {
 
@@ -16,8 +17,9 @@ public class HomePage extends AbstractBasePage {
         super(baseUrl, webDriver);
     }
 
-    public void navigate() {
+    public HomePage navigate() {
         super.navigateTo(baseUrl);
+        return this;
     }
 
     public Optional<String> getBannerMessage() {
@@ -33,4 +35,26 @@ public class HomePage extends AbstractBasePage {
         }).collect(toList());
     }
 
+    public HomePage expectBannerMessage(String message) {
+        assertThat(getBannerMessage()).isEqualTo(Optional.of(message));
+        return this;
+    }
+
+    public HomePage expectNoBannerMessage() {
+        assertThat(getBannerMessage()).isEqualTo(Optional.empty());
+        return this;
+    }
+
+    public HomePage expectTotalProductsDisplayedOnPageToBe(int count) {
+        assertThat(getProducts()).hasSize(count);
+        return this;
+    }
+
+    public HomePage expectProductIsDisplayedOnPage(Product product) {
+        assertThat(getProducts())
+                .usingRecursiveFieldByFieldElementComparator()
+                .overridingErrorMessage("Product with name: <%s> and description: <%s> not found", product.getName(), product.getDescription())
+                .contains(product);
+        return this;
+    }
 }

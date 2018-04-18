@@ -1,21 +1,12 @@
 package com.harishkannarao.demo.feature_toggle.test.integration;
 
-import com.harishkannarao.demo.feature_toggle.test.dto.Product;
-import com.harishkannarao.demo.feature_toggle.test.page_objects.HomePage;
 import com.harishkannarao.demo.feature_toggle.test.property.TestPropertyReader;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.openqa.selenium.WebDriver;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import java.util.List;
-
 import static com.harishkannarao.demo.feature_toggle.test.constants.TestProducts.*;
-import static java.util.Optional.empty;
-import static java.util.Optional.of;
-import static org.hamcrest.Matchers.*;
-import static org.junit.Assert.assertThat;
 
 public class HomePageIntegrationTest extends AbstractBaseIntegrationTest {
 
@@ -31,68 +22,62 @@ public class HomePageIntegrationTest extends AbstractBaseIntegrationTest {
     @Test
     public void should_display_banner_message_when_enabled_through_property() {
         testPropertyReader.setDisplayHiddenProduct(true);
-        WebDriver webDriver = webDriverFactory.newWebDriver();
-        HomePage homePage = pageObjectFactory.createHomePage(webDriver);
-        homePage.navigate();
-        assertThat(homePage.getBannerMessage(), equalTo(of("New products available for sale !!!")));
+
+        pageObjectFactory.createHomePage()
+                .navigate()
+                .expectBannerMessage("New products available for sale !!!");
     }
 
     @Test
     public void should_not_display_banner_message_when_disabled_through_property() {
         testPropertyReader.setDisplayHiddenProduct(false);
-        WebDriver webDriver = webDriverFactory.newWebDriver();
-        HomePage homePage = pageObjectFactory.createHomePage(webDriver);
-        homePage.navigate();
-        assertThat(homePage.getBannerMessage(), equalTo(empty()));
+
+        pageObjectFactory.createHomePage()
+                .navigate()
+                .expectNoBannerMessage();
     }
 
     @Test
     public void should_not_display_banner_message_as_default_behaviour() {
         testPropertyReader.resetDisplayHiddenProduct();
-        WebDriver webDriver = webDriverFactory.newWebDriver();
-        HomePage homePage = pageObjectFactory.createHomePage(webDriver);
-        homePage.navigate();
-        assertThat(homePage.getBannerMessage(), equalTo(empty()));
+
+        pageObjectFactory.createHomePage()
+                .navigate()
+                .expectNoBannerMessage();
     }
 
     @Test
     public void should_display_hidden_products_when_enabled_through_property() {
         testPropertyReader.setDisplayHiddenProduct(true);
-        WebDriver webDriver = webDriverFactory.newWebDriver();
-        HomePage homePage = pageObjectFactory.createHomePage(webDriver);
-        homePage.navigate();
 
-        List<Product> products = homePage.getProducts();
-        assertThat(products.size(), equalTo(4));
-        assertThat(products, hasItem(samePropertyValuesAs(DOODLE_EXCEL)));
-        assertThat(products, hasItem(samePropertyValuesAs(DODDLE_SUCCESS_7)));
-        assertThat(products, hasItem(samePropertyValuesAs(PEARS_YPHONE)));
-        assertThat(products, hasItem(samePropertyValuesAs(PEARS_YPAD)));
+        pageObjectFactory.createHomePage()
+                .navigate()
+                .expectTotalProductsDisplayedOnPageToBe(4)
+                .expectProductIsDisplayedOnPage(DOODLE_EXCEL)
+                .expectProductIsDisplayedOnPage(DODDLE_SUCCESS_7)
+                .expectProductIsDisplayedOnPage(PEARS_YPHONE)
+                .expectProductIsDisplayedOnPage(PEARS_YPAD);
     }
 
     @Test
     public void should_not_display_hidden_products_when_disabled_through_property() {
         testPropertyReader.setDisplayHiddenProduct(false);
-        WebDriver webDriver = webDriverFactory.newWebDriver();
-        HomePage homePage = pageObjectFactory.createHomePage(webDriver);
-        homePage.navigate();
 
-        List<Product> products = homePage.getProducts();
-        assertThat(products.size(), equalTo(2));
-        assertThat(products, hasItem(samePropertyValuesAs(DOODLE_EXCEL)));
-        assertThat(products, hasItem(samePropertyValuesAs(DODDLE_SUCCESS_7)));
+        pageObjectFactory.createHomePage()
+                .navigate()
+                .expectTotalProductsDisplayedOnPageToBe(2)
+                .expectProductIsDisplayedOnPage(DOODLE_EXCEL)
+                .expectProductIsDisplayedOnPage(DODDLE_SUCCESS_7);
     }
 
     @Test
     public void should_not_display_hidden_products_as_default_behaviour() {
         testPropertyReader.resetDisplayHiddenProduct();
-        WebDriver webDriver = webDriverFactory.newWebDriver();
-        HomePage homePage = pageObjectFactory.createHomePage(webDriver);
-        homePage.navigate();
 
-        List<Product> products = homePage.getProducts();
-        assertThat(products.size(), equalTo(2));
-        assertThat(products, hasItem(samePropertyValuesAs(DOODLE_EXCEL)));
-        assertThat(products, hasItem(samePropertyValuesAs(DODDLE_SUCCESS_7)));
+        pageObjectFactory.createHomePage()
+                .navigate()
+                .expectTotalProductsDisplayedOnPageToBe(2)
+                .expectProductIsDisplayedOnPage(DOODLE_EXCEL)
+                .expectProductIsDisplayedOnPage(DODDLE_SUCCESS_7);
     }
 }

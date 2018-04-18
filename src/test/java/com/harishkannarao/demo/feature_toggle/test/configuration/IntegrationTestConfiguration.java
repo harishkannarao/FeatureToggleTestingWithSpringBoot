@@ -18,8 +18,8 @@ public class IntegrationTestConfiguration {
     }
 
     @Bean
-    public PageObjectFactory createPageObjectFactory() {
-        return new PageObjectFactory();
+    public PageObjectFactory createPageObjectFactory(WebDriverFactory webDriverFactory) {
+        return new PageObjectFactory(webDriverFactory);
     }
 
     @Bean

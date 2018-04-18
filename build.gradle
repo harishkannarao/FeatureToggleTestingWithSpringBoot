@@ -26,6 +26,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-devtools:${springBootVersion}")
 
     testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+    testCompile("org.assertj:assertj-core:${assertjVersion}")
     testCompile("org.seleniumhq.selenium:selenium-java:${seleniumVersion}")
     testCompile("com.google.guava:guava:${guavaVersion}")
     testCompile project(':')
