@@ -1,11 +1,22 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
 <head>
-    <title>Phones</title>
+    <title>Products</title>
 </head>
 <body>
-<span id="msg">Hello World !!!</span>
-<br>
 <span id="bannerMsg" th:if="${displayBanner} == true">New products available for sale !!!</span>
+<br/>
+<br/>
+<h4>Available Products</h4>
+<table>
+    <tr>
+        <th>Name</th>
+        <th>Description</th>
+    </tr>
+    <tr class="product" th:each="product : ${products}">
+        <td class="product-name" th:text="${product.name}">Test Phone</td>
+        <td class="product-description" th:text="${product.description}">Test Description</td>
+    </tr>
+</table>
 </body>
 </html>
