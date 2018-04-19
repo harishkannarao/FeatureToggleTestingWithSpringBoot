@@ -19,10 +19,10 @@ public class ProductsApiIntegrationTest extends AbstractBaseIntegrationTest {
     }
 
     @Test
-    public void should_display_hidden_products_when_enabled_through_property() {
+    public void returns_hidden_products_when_enabled_through_property() {
         testPropertyReader.setDisplayHiddenProduct(true);
 
-        restClientFactory.createProductsApiRestRequest()
+        restClientFactory.productsApiRestRequest()
             .execute()
             .expectSuccessStatusCode()
             .expectTotalProductsToBe(4)
@@ -33,10 +33,10 @@ public class ProductsApiIntegrationTest extends AbstractBaseIntegrationTest {
     }
 
     @Test
-    public void should_not_display_hidden_products_when_disabled_through_property() {
+    public void does_not_returns_hidden_products_when_disabled_through_property() {
         testPropertyReader.setDisplayHiddenProduct(false);
 
-        restClientFactory.createProductsApiRestRequest()
+        restClientFactory.productsApiRestRequest()
                 .execute()
                 .expectSuccessStatusCode()
                 .expectTotalProductsToBe(2)
@@ -45,10 +45,10 @@ public class ProductsApiIntegrationTest extends AbstractBaseIntegrationTest {
     }
 
     @Test
-    public void should_not_display_hidden_products_as_default_behaviour() {
+    public void does_not_returns_hidden_products_as_default_behaviour() {
         testPropertyReader.resetDisplayHiddenProduct();
 
-        restClientFactory.createProductsApiRestRequest()
+        restClientFactory.productsApiRestRequest()
                 .execute()
                 .expectSuccessStatusCode()
                 .expectTotalProductsToBe(2)

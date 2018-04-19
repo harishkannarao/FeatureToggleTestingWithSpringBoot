@@ -11,7 +11,7 @@ public class PageObjectFactory {
         this.webDriverFactory = webDriverFactory;
     }
 
-    public HomePage createHomePage() {
+    public HomePage homePage() {
         return new HomePage(TestConstants.APPLICATION_TEST_URL, webDriverFactory.newWebDriver());
     }
 }

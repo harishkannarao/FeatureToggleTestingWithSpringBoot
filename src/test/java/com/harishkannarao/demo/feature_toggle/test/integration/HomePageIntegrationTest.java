@@ -23,7 +23,7 @@ public class HomePageIntegrationTest extends AbstractBaseIntegrationTest {
     public void should_display_banner_message_when_enabled_through_property() {
         testPropertyReader.setDisplayHiddenProduct(true);
 
-        pageObjectFactory.createHomePage()
+        pageObjectFactory.homePage()
                 .navigate()
                 .expectBannerMessage("New products available for sale !!!");
     }
@@ -32,7 +32,7 @@ public class HomePageIntegrationTest extends AbstractBaseIntegrationTest {
     public void should_not_display_banner_message_when_disabled_through_property() {
         testPropertyReader.setDisplayHiddenProduct(false);
 
-        pageObjectFactory.createHomePage()
+        pageObjectFactory.homePage()
                 .navigate()
                 .expectNoBannerMessage();
     }
@@ -41,7 +41,7 @@ public class HomePageIntegrationTest extends AbstractBaseIntegrationTest {
     public void should_not_display_banner_message_as_default_behaviour() {
         testPropertyReader.resetDisplayHiddenProduct();
 
-        pageObjectFactory.createHomePage()
+        pageObjectFactory.homePage()
                 .navigate()
                 .expectNoBannerMessage();
     }
@@ -50,7 +50,7 @@ public class HomePageIntegrationTest extends AbstractBaseIntegrationTest {
     public void should_display_hidden_products_when_enabled_through_property() {
         testPropertyReader.setDisplayHiddenProduct(true);
 
-        pageObjectFactory.createHomePage()
+        pageObjectFactory.homePage()
                 .navigate()
                 .expectTotalProductsDisplayedOnPageToBe(4)
                 .expectProductIsDisplayedOnPage(DOODLE_EXCEL)
@@ -63,7 +63,7 @@ public class HomePageIntegrationTest extends AbstractBaseIntegrationTest {
     public void should_not_display_hidden_products_when_disabled_through_property() {
         testPropertyReader.setDisplayHiddenProduct(false);
 
-        pageObjectFactory.createHomePage()
+        pageObjectFactory.homePage()
                 .navigate()
                 .expectTotalProductsDisplayedOnPageToBe(2)
                 .expectProductIsDisplayedOnPage(DOODLE_EXCEL)
@@ -74,7 +74,7 @@ public class HomePageIntegrationTest extends AbstractBaseIntegrationTest {
     public void should_not_display_hidden_products_as_default_behaviour() {
         testPropertyReader.resetDisplayHiddenProduct();
 
-        pageObjectFactory.createHomePage()
+        pageObjectFactory.homePage()
                 .navigate()
                 .expectTotalProductsDisplayedOnPageToBe(2)
                 .expectProductIsDisplayedOnPage(DOODLE_EXCEL)

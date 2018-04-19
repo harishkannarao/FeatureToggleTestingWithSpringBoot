@@ -26,7 +26,7 @@ public class ProductsApiRestResponse {
     }
 
     public List<Product> getProducts() {
-        return response.extract().jsonPath().getList("$", Product.class);
+        return response.extract().jsonPath().getList("", Product.class);
     }
 
     public ProductsApiRestResponse expectProduct(Product product) {
