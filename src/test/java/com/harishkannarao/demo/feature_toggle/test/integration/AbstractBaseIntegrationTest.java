@@ -3,6 +3,7 @@ package com.harishkannarao.demo.feature_toggle.test.integration;
 import com.harishkannarao.demo.feature_toggle.FeatureToggleTestingDemoApplication;
 import com.harishkannarao.demo.feature_toggle.test.configuration.IntegrationTestConfiguration;
 import com.harishkannarao.demo.feature_toggle.test.factory.PageObjectFactory;
+import com.harishkannarao.demo.feature_toggle.test.factory.RestClientFactory;
 import com.harishkannarao.demo.feature_toggle.test.factory.WebDriverFactory;
 import org.junit.After;
 import org.junit.runner.RunWith;
@@ -26,6 +27,8 @@ public abstract class AbstractBaseIntegrationTest {
     protected WebDriverFactory webDriverFactory;
     @Autowired
     protected PageObjectFactory pageObjectFactory;
+    @Autowired
+    protected RestClientFactory restClientFactory;
 
     @After
     public void globalTearDown() {

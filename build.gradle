@@ -29,6 +29,7 @@ dependencies {
     testCompile("org.assertj:assertj-core:${assertjVersion}")
     testCompile("org.seleniumhq.selenium:selenium-java:${seleniumVersion}")
     testCompile("com.google.guava:guava:${guavaVersion}")
+    testCompile("io.rest-assured:rest-assured:${restAssuredVersion}")
     testCompile project(':')
 }
 

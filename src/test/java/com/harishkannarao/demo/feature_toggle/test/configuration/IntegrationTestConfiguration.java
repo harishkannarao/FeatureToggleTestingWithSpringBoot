@@ -3,6 +3,7 @@ package com.harishkannarao.demo.feature_toggle.test.configuration;
 import com.harishkannarao.demo.feature_toggle.property.DefaultPropertyReader;
 import com.harishkannarao.demo.feature_toggle.property.PropertyReader;
 import com.harishkannarao.demo.feature_toggle.test.factory.PageObjectFactory;
+import com.harishkannarao.demo.feature_toggle.test.factory.RestClientFactory;
 import com.harishkannarao.demo.feature_toggle.test.factory.WebDriverFactory;
 import com.harishkannarao.demo.feature_toggle.test.property.TestPropertyReader;
 import org.springframework.boot.test.context.TestConfiguration;
@@ -20,6 +21,11 @@ public class IntegrationTestConfiguration {
     @Bean
     public PageObjectFactory createPageObjectFactory(WebDriverFactory webDriverFactory) {
         return new PageObjectFactory(webDriverFactory);
+    }
+
+    @Bean
+    public RestClientFactory createRestClientFactory() {
+        return new RestClientFactory();
     }
 
     @Bean
