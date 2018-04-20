@@ -6,23 +6,33 @@
     <script src="/webjars/bootstrap/4.1.0/css/bootstrap.min.css"></script>
 </head>
 <body>
-<span id="bannerMsg" th:if="${displayBanner} == true">New products available for sale !!!</span>
-<br/>
-<br/>
-<h4>Available Products</h4>
-<table class="table">
-    <thead>
-    <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr class="product" th:each="product : ${products}">
-        <th scope="row" class="product-name" th:text="${product.name}">Test Phone</th>
-        <td class="product-description" th:text="${product.description}">Test Description</td>
-    </tr>
-    </tbody>
-</table>
+<div class="container-fluid">
+    <div class="row py-2 mx-2" th:if="${displayBanner} == true">
+        <div id="bannerMsg" class="col">
+            <h4>New products available for sale !!!</h4>
+        </div>
+    </div>
+    <div class="row py-2 mx-2">
+        <div class="col">
+            <h4>Available Products</h4>
+        </div>
+    </div>
+    <div class="row py-2 mx-2">
+        <table class="table">
+            <thead>
+            <tr>
+                <th scope="col">Name</th>
+                <th scope="col">Description</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr class="product" th:each="product : ${products}">
+                <th scope="row" class="product-name" th:text="${product.name}">Test Phone</th>
+                <td class="product-description" th:text="${product.description}">Test Description</td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
 </body>
 </html>
