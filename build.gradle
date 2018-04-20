@@ -24,6 +24,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
     compile("org.springframework.boot:spring-boot-starter-thymeleaf:${springBootVersion}")
     compile("org.springframework.boot:spring-boot-devtools:${springBootVersion}")
+    compile("org.webjars:bootstrap:${bootstrapVersion}")
 
     testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
     testCompile("org.assertj:assertj-core:${assertjVersion}")
