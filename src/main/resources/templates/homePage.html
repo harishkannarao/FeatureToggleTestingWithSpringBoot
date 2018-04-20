@@ -8,8 +8,8 @@
 <body>
 <div class="container-fluid">
     <div class="row py-2 mx-2" th:if="${displayBanner} == true">
-        <div id="bannerMsg" class="col">
-            <h4>New products available for sale !!!</h4>
+        <div class="alert alert-primary col" role="alert" id="bannerMsg">
+            New products available for sale !!!
         </div>
     </div>
     <div class="row py-2 mx-2">
@@ -32,6 +32,21 @@
             </tr>
             </tbody>
         </table>
+    </div>
+    <div class="row py-2 mx-2">
+        <div class="col">
+            <h4>As APIs</h4>
+        </div>
+    </div>
+    <div class="row py-2 mx-2">
+        <div class="col">
+            <a class="btn btn-primary" role="button" href="/api/products">Products API</a>
+        </div>
+    </div>
+    <div class="row py-2 mx-2">
+        <div class="col">
+            <a class="btn btn-primary" role="button" href="/api/messages">Messages API</a>
+        </div>
     </div>
 </div>
 </body>

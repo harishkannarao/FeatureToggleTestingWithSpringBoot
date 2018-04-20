@@ -20,10 +20,11 @@ public class ProductService {
     }
 
     public List<Product> getAllProducts() {
-        List<Product> result = new ArrayList<>(getDefaultProducts());
+        List<Product> result = new ArrayList<>();
         if (propertyReader.displayHiddenProducts()) {
             result.addAll(getHiddenProducts());
         }
+        result.addAll(getDefaultProducts());
         return result;
     }
 
