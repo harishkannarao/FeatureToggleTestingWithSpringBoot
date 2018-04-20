@@ -7,17 +7,10 @@ import java.util.List;
 
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class ProductsApiRestResponse {
-    private final ValidatableResponse response;
+public class ProductsApiRestResponse extends AbstractBaseRestResponse<ProductsApiRestResponse> {
 
     public ProductsApiRestResponse(ValidatableResponse response) {
-
-        this.response = response;
-    }
-
-    public ProductsApiRestResponse expectSuccessStatusCode() {
-        response.statusCode(200);
-        return this;
+        super(response);
     }
 
     public ProductsApiRestResponse expectTotalProductsToBe(int count) {

@@ -5,12 +5,9 @@ import io.restassured.response.ValidatableResponse;
 import static org.hamcrest.Matchers.equalTo;
 import static org.hamcrest.Matchers.nullValue;
 
-public class MessagesApiRestResponse {
-    private final ValidatableResponse response;
-
+public class MessagesApiRestResponse extends AbstractBaseRestResponse<MessagesApiRestResponse> {
     public MessagesApiRestResponse(ValidatableResponse response) {
-
-        this.response = response;
+        super(response);
     }
 
     public MessagesApiRestResponse expectBannerMessage(String message) {
@@ -20,11 +17,6 @@ public class MessagesApiRestResponse {
 
     public MessagesApiRestResponse expectNoBannerMessage() {
         response.body("bannerMessage", nullValue());
-        return this;
-    }
-
-    public MessagesApiRestResponse expectSuccessStatus() {
-        response.statusCode(200);
         return this;
     }
 

@@ -11,15 +11,14 @@ import java.util.Optional;
 import static java.util.stream.Collectors.toList;
 import static org.assertj.core.api.Assertions.assertThat;
 
-public class HomePage extends AbstractBasePage {
+public class HomePage extends AbstractBasePage<HomePage> {
 
     public HomePage(String baseUrl, WebDriver webDriver) {
         super(baseUrl, webDriver);
     }
 
     public HomePage navigate() {
-        super.navigateTo(baseUrl);
-        return this;
+        return super.navigateTo(baseUrl);
     }
 
     public Optional<String> getBannerMessage() {

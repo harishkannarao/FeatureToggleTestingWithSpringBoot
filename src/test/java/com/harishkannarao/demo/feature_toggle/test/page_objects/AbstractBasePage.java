@@ -7,7 +7,7 @@ import org.openqa.selenium.WebElement;
 import java.util.List;
 import java.util.Optional;
 
-public abstract class AbstractBasePage {
+public abstract class AbstractBasePage<R extends AbstractBasePage> {
     protected final String baseUrl;
     protected final WebDriver webDriver;
 
@@ -16,8 +16,9 @@ public abstract class AbstractBasePage {
         this.webDriver = webDriver;
     }
 
-    protected void navigateTo(String url) {
+    protected R navigateTo(String url) {
         webDriver.navigate().to(url);
+        return (R) this;
     }
 
     protected Optional<String> getElementText(String id) {

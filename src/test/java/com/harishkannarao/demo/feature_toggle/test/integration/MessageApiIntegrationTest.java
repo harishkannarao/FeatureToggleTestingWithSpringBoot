@@ -20,7 +20,7 @@ public class MessageApiIntegrationTest extends AbstractBaseIntegrationTest {
     public void returns_product_message() {
         restClientFactory.messagesApiRestRequest()
                 .execute()
-                .expectSuccessStatus()
+                .expectSuccessStatusCode()
                 .expectProductMessage("Available Products");
     }
 
@@ -30,7 +30,7 @@ public class MessageApiIntegrationTest extends AbstractBaseIntegrationTest {
 
         restClientFactory.messagesApiRestRequest()
                 .execute()
-                .expectSuccessStatus()
+                .expectSuccessStatusCode()
                 .expectBannerMessage("New products available for sale !!!");
     }
 
@@ -40,7 +40,7 @@ public class MessageApiIntegrationTest extends AbstractBaseIntegrationTest {
 
         restClientFactory.messagesApiRestRequest()
                 .execute()
-                .expectSuccessStatus()
+                .expectSuccessStatusCode()
                 .expectNoBannerMessage();
     }
 
@@ -50,7 +50,7 @@ public class MessageApiIntegrationTest extends AbstractBaseIntegrationTest {
 
         restClientFactory.messagesApiRestRequest()
                 .execute()
-                .expectSuccessStatus()
+                .expectSuccessStatusCode()
                 .expectNoBannerMessage();
     }
 }
