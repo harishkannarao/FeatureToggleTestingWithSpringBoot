@@ -9,10 +9,45 @@ This repository is to demonstrate feature toggle functional testing (developer's
 * Java JDK Version: 9
 * Apache Maven Version: 3.3.9
 * Gradle Version: 4.6
-* Chrome (Windows & Mac OS) Browser / Chromium (Linux OS) Browser: 62
-* chromedriver: 2.32 [chromedriver installation steps](https://blogs.harishkannarao.com/2018/01/installing-chromedriver-for-selenium.html)
+* Chrome (Windows & Mac OS) Browser / Chromium (Linux OS) Browser: 66
+* chromedriver: 2.37 [chromedriver installation steps](https://blogs.harishkannarao.com/2018/01/installing-chromedriver-for-selenium.html)
 * Git Client: Any latest version
 * Integrated Development Environment: Any version of IntelliJ Idea or Eclipse
+
+## Approach to feature toggle integration test
+
+#### com.harishkannarao.demo.feature_toggle.property.PropertyReader
+This class defines an interface for the application on the properties that can be read from properties file or yaml file or an environment variable
+
+#### com.harishkannarao.demo.feature_toggle.property.DefaultPropertyReader
+This class is the actual implementation which reads value from properties file or yaml file or an environment variable using Spring annotation
+```
+@Value("${application-config.display-hidden-products}") boolean displayHiddenProducts
+```
+
+#### com.harishkannarao.demo.feature_toggle.test.property.TestPropertyReader
+This class is a utility class, which can be controlled by the integration test to enable or disable the feature toggle. This class implements `PropertyReader` interface and wraps `DefaultPropertyReader` object and hence can be injected into the application as a replacement for `DefaultPropertyReader`.
+
+#### Replacing DefaultPropertyReader with TestPropertyReader
+The following bean definition in `com.harishkannarao.demo.feature_toggle.test.configuration.IntegrationTestConfiguration` allows us to inject `TestPropertyReader` in places for `DefaultPropertyReader`
+```
+    @Bean
+    @Primary
+    public PropertyReader createTestPropertyReader(DefaultPropertyReader defaultPropertyReader) {
+        return new TestPropertyReader(defaultPropertyReader);
+    }
+```
+
+#### Sample integration tests
+`com.harishkannarao.demo.feature_toggle.test.integration.HomePageIntegrationTest` tests the behaviour of a web page with feature toggle enabled and disabled.
+
+`com.harishkannarao.demo.feature_toggle.test.integration.ProductsApiIntegrationTest` tests the behaviour of an api with feature toggle enabled and disabled.
+
+#### Benefits of this approach
+* Tests control the feature toggle without restarting the server or application
+* Tests the application's behaviour with multiple layers within the application code (controllers and service class)
+* Tests the application's default behaviour based on the configuration file
+
 
 ## Running the build
 Note: For gradle users on Windows, please use **gradlew.bat** instead of **./gradlew** in the following commands
