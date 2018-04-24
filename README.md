@@ -16,6 +16,10 @@ This repository is to demonstrate feature toggle functional testing (developer's
 
 ## Approach to feature toggle integration test
 
+#### Please refer to my blog post about feature toggle and importance of integration testing
+
+[Feature Toggle Integration Testing with Spring Boot](https://blogs.harishkannarao.com/2018/04/feature-toggle-integration-testing-with.html)
+
 #### com.harishkannarao.demo.feature_toggle.property.PropertyReader
 This class defines an interface for the application on the properties that can be read from properties file or yaml file or an environment variable
 
