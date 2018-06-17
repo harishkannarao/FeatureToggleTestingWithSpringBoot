@@ -1,17 +1,12 @@
 package com.harishkannarao.demo.feature_toggle.test.integration;
 
-import com.harishkannarao.demo.feature_toggle.test.property.TestPropertyReader;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
-import org.springframework.beans.factory.annotation.Autowired;
 
 import static com.harishkannarao.demo.feature_toggle.test.constants.TestProducts.*;
 
 public class HomePageIntegrationTest extends AbstractBaseIntegrationTest {
-
-    @Autowired
-    private TestPropertyReader testPropertyReader;
 
     @Before
     @After
