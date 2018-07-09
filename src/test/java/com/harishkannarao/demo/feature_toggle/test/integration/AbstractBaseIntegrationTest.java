@@ -5,9 +5,9 @@ import com.harishkannarao.demo.feature_toggle.test.configuration.IntegrationTest
 import com.harishkannarao.demo.feature_toggle.test.factory.PageObjectFactory;
 import com.harishkannarao.demo.feature_toggle.test.factory.RestClientFactory;
 import com.harishkannarao.demo.feature_toggle.test.factory.WebDriverFactory;
-import com.harishkannarao.demo.feature_toggle.test.property.TestPropertyReader;
 import org.junit.After;
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
@@ -19,15 +19,33 @@ public abstract class AbstractBaseIntegrationTest {
     private static WebDriverFactory webDriverFactory;
     static PageObjectFactory pageObjectFactory;
     static RestClientFactory restClientFactory;
-    static TestPropertyReader testPropertyReader;
 
-    protected void restartApplicationWithProperties(String... args) {
+    void displayHiddenProducts() {
+        restartApplicationWithProperties("--application-config.display-hidden-products=true");
+    }
+
+    void doNotDisplayHiddenProducts() {
+        restartApplicationWithProperties("--application-config.display-hidden-products=false");
+    }
+
+    @Before
+    public void resetApplication() {
+        restartApplicationWithDefaultProperties();
+    }
+
+    @After
+    public void globalTearDown() {
+        webDriverFactory.closeAllWebDrivers();
+    }
+
+    private static void restartApplicationWithProperties(String... args) {
         runningDefaultApplication = false;
         runApplicationWithProperties(args);
     }
 
-    @Before
-    public void restartApplicationWithDefaultProperties() {
+    @SuppressWarnings("WeakerAccess")
+    @BeforeClass
+    public static void restartApplicationWithDefaultProperties() {
         if (!runningDefaultApplication) {
             runningDefaultApplication = true;
             runApplicationWithProperties(defaultProperties);
@@ -48,12 +66,6 @@ public abstract class AbstractBaseIntegrationTest {
         webDriverFactory = application.getBean(WebDriverFactory.class);
         pageObjectFactory = application.getBean(PageObjectFactory.class);
         restClientFactory = application.getBean(RestClientFactory.class);
-        testPropertyReader = application.getBean(TestPropertyReader.class);
-    }
-
-    @After
-    public void globalTearDown() {
-        webDriverFactory.closeAllWebDrivers();
     }
 
 }

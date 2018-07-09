@@ -1,16 +1,8 @@
 package com.harishkannarao.demo.feature_toggle.test.integration;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 public class MessageApiIntegrationTest extends AbstractBaseIntegrationTest {
-
-    @Before
-    @After
-    public void resetPropertyReader() {
-        testPropertyReader.resetDisplayHiddenProduct();
-    }
 
     @Test
     public void returns_product_message() {
@@ -22,7 +14,7 @@ public class MessageApiIntegrationTest extends AbstractBaseIntegrationTest {
 
     @Test
     public void returns_banner_message_when_enabled_through_property() {
-        testPropertyReader.setDisplayHiddenProduct(true);
+        displayHiddenProducts();
 
         restClientFactory.messagesApiRestRequest()
                 .execute()
@@ -32,7 +24,7 @@ public class MessageApiIntegrationTest extends AbstractBaseIntegrationTest {
 
     @Test
     public void does_not_returns_banner_message_when_disabled_through_property() {
-        testPropertyReader.setDisplayHiddenProduct(false);
+        doNotDisplayHiddenProducts();
 
         restClientFactory.messagesApiRestRequest()
                 .execute()
@@ -42,8 +34,6 @@ public class MessageApiIntegrationTest extends AbstractBaseIntegrationTest {
 
     @Test
     public void does_not_returns_banner_message_as_default_behaviour() {
-        testPropertyReader.resetDisplayHiddenProduct();
-
         restClientFactory.messagesApiRestRequest()
                 .execute()
                 .expectSuccessStatusCode()

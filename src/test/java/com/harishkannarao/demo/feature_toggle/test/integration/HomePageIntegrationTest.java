@@ -1,22 +1,14 @@
 package com.harishkannarao.demo.feature_toggle.test.integration;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 import static com.harishkannarao.demo.feature_toggle.test.constants.TestProducts.*;
 
 public class HomePageIntegrationTest extends AbstractBaseIntegrationTest {
 
-    @Before
-    @After
-    public void resetPropertyReader() {
-        testPropertyReader.resetDisplayHiddenProduct();
-    }
-
     @Test
     public void should_display_banner_message_when_enabled_through_property() {
-        testPropertyReader.setDisplayHiddenProduct(true);
+        displayHiddenProducts();
 
         pageObjectFactory.homePage()
                 .navigate()
@@ -25,7 +17,7 @@ public class HomePageIntegrationTest extends AbstractBaseIntegrationTest {
 
     @Test
     public void should_not_display_banner_message_when_disabled_through_property() {
-        testPropertyReader.setDisplayHiddenProduct(false);
+        doNotDisplayHiddenProducts();
 
         pageObjectFactory.homePage()
                 .navigate()
@@ -34,8 +26,6 @@ public class HomePageIntegrationTest extends AbstractBaseIntegrationTest {
 
     @Test
     public void should_not_display_banner_message_as_default_behaviour() {
-        testPropertyReader.resetDisplayHiddenProduct();
-
         pageObjectFactory.homePage()
                 .navigate()
                 .expectNoBannerMessage();
@@ -43,7 +33,7 @@ public class HomePageIntegrationTest extends AbstractBaseIntegrationTest {
 
     @Test
     public void should_display_hidden_products_when_enabled_through_property() {
-        testPropertyReader.setDisplayHiddenProduct(true);
+        displayHiddenProducts();
 
         pageObjectFactory.homePage()
                 .navigate()
@@ -56,7 +46,7 @@ public class HomePageIntegrationTest extends AbstractBaseIntegrationTest {
 
     @Test
     public void should_not_display_hidden_products_when_disabled_through_property() {
-        testPropertyReader.setDisplayHiddenProduct(false);
+        doNotDisplayHiddenProducts();
 
         pageObjectFactory.homePage()
                 .navigate()
@@ -67,8 +57,6 @@ public class HomePageIntegrationTest extends AbstractBaseIntegrationTest {
 
     @Test
     public void should_not_display_hidden_products_as_default_behaviour() {
-        testPropertyReader.resetDisplayHiddenProduct();
-
         pageObjectFactory.homePage()
                 .navigate()
                 .expectTotalProductsDisplayedOnPageToBe(2)

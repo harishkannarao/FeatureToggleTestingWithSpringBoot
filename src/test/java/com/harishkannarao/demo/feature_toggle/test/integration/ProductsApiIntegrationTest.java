@@ -1,22 +1,14 @@
 package com.harishkannarao.demo.feature_toggle.test.integration;
 
-import org.junit.After;
-import org.junit.Before;
 import org.junit.Test;
 
 import static com.harishkannarao.demo.feature_toggle.test.constants.TestProducts.*;
 
 public class ProductsApiIntegrationTest extends AbstractBaseIntegrationTest {
 
-    @Before
-    @After
-    public void resetPropertyReader() {
-        testPropertyReader.resetDisplayHiddenProduct();
-    }
-
     @Test
     public void returns_hidden_products_when_enabled_through_property() {
-        testPropertyReader.setDisplayHiddenProduct(true);
+        displayHiddenProducts();
 
         restClientFactory.productsApiRestRequest()
             .execute()
@@ -30,7 +22,7 @@ public class ProductsApiIntegrationTest extends AbstractBaseIntegrationTest {
 
     @Test
     public void does_not_returns_hidden_products_when_disabled_through_property() {
-        testPropertyReader.setDisplayHiddenProduct(false);
+        doNotDisplayHiddenProducts();
 
         restClientFactory.productsApiRestRequest()
                 .execute()
@@ -42,8 +34,6 @@ public class ProductsApiIntegrationTest extends AbstractBaseIntegrationTest {
 
     @Test
     public void does_not_returns_hidden_products_as_default_behaviour() {
-        testPropertyReader.resetDisplayHiddenProduct();
-
         restClientFactory.productsApiRestRequest()
                 .execute()
                 .expectSuccessStatusCode()

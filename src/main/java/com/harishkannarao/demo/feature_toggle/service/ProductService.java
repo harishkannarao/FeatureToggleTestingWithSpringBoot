@@ -1,8 +1,8 @@
 package com.harishkannarao.demo.feature_toggle.service;
 
 import com.harishkannarao.demo.feature_toggle.domain.Product;
-import com.harishkannarao.demo.feature_toggle.property.PropertyReader;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
 import java.util.ArrayList;
@@ -12,16 +12,16 @@ import java.util.List;
 @Component
 public class ProductService {
 
-    private final PropertyReader propertyReader;
+    private final boolean displayHiddenProducts;
 
     @Autowired
-    public ProductService(PropertyReader propertyReader) {
-        this.propertyReader = propertyReader;
+    public ProductService(@Value("${application-config.display-hidden-products}") boolean displayHiddenProducts) {
+        this.displayHiddenProducts = displayHiddenProducts;
     }
 
     public List<Product> getAllProducts() {
         List<Product> result = new ArrayList<>();
-        if (propertyReader.displayHiddenProducts()) {
+        if (displayHiddenProducts) {
             result.addAll(getHiddenProducts());
         }
         result.addAll(getDefaultProducts());
