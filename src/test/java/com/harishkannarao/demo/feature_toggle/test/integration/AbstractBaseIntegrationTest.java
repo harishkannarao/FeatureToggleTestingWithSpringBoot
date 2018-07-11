@@ -36,6 +36,14 @@ public abstract class AbstractBaseIntegrationTest {
         restartApplicationWithProperties("--conditional-api.enabled=false");
     }
 
+    void enableDifferentMessageService() {
+        restartApplicationWithProperties("--conditional-service.name=different");
+    }
+
+    void enableDefaultMessageService() {
+        restartApplicationWithProperties("--conditional-service.name=default");
+    }
+
     @Before
     public void resetApplication() {
         restartApplicationWithDefaultProperties();
