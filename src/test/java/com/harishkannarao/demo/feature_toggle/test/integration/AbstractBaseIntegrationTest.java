@@ -28,6 +28,14 @@ public abstract class AbstractBaseIntegrationTest {
         restartApplicationWithProperties("--application-config.display-hidden-products=false");
     }
 
+    void enableConditionalApi() {
+        restartApplicationWithProperties("--conditional-api.enabled=true");
+    }
+
+    void disableConditionalApi() {
+        restartApplicationWithProperties("--conditional-api.enabled=false");
+    }
+
     @Before
     public void resetApplication() {
         restartApplicationWithDefaultProperties();
