@@ -1,6 +1,6 @@
 package com.harishkannarao.demo.feature_toggle.test.integration;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static com.harishkannarao.demo.feature_toggle.test.constants.TestProducts.*;
 

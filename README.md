@@ -6,11 +6,11 @@ This repository is to demonstrate feature toggle functional testing (developer's
 [![Build Status](https://travis-ci.org/harishkannarao/FeatureToggleTestingWithSpringBoot.svg?branch=master)](https://travis-ci.org/harishkannarao/FeatureToggleTestingWithSpringBoot)
 
 ## Required Softwares, Tools and Version
-* Java JDK Version: 9
-* Apache Maven Version: 3.3.9
-* Gradle Version: 4.6
-* Chrome (Windows & Mac OS) Browser / Chromium (Linux OS) Browser: 66
-* chromedriver: 2.37 [chromedriver installation steps](https://blogs.harishkannarao.com/2018/01/installing-chromedriver-for-selenium.html)
+* Java JDK Version: 11
+* Apache Maven Version: 3.6.3
+* Gradle Version: 7.1
+* Chrome (Windows & Mac OS) Browser / Chromium (Linux OS) Browser: 91
+* chromedriver: 91 [chromedriver installation steps](https://blogs.harishkannarao.com/2018/01/installing-chromedriver-for-selenium.html)
 * Git Client: Any latest version
 * Integrated Development Environment: Any version of IntelliJ Idea or Eclipse
 

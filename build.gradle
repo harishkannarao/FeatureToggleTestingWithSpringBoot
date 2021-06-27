@@ -19,37 +19,35 @@ repositories {
 }
 
 dependencies {
-    compile("org.springframework.boot:spring-boot-devtools:${springBootVersion}")
-    compile("org.springframework.boot:spring-boot-starter:${springBootVersion}")
-    compile("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
-    compile("org.springframework.boot:spring-boot-starter-thymeleaf:${springBootVersion}")
-    compile("org.springframework.boot:spring-boot-devtools:${springBootVersion}")
-    compile("org.webjars:bootstrap:${bootstrapVersion}")
+    implementation("org.springframework.boot:spring-boot-devtools:${springBootVersion}")
+    implementation("org.springframework.boot:spring-boot-starter:${springBootVersion}")
+    implementation("org.springframework.boot:spring-boot-starter-web:${springBootVersion}")
+    implementation("org.springframework.boot:spring-boot-starter-thymeleaf:${springBootVersion}")
+    implementation("org.webjars:bootstrap:${bootstrapVersion}")
 
-    testCompile("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
-    testCompile("org.assertj:assertj-core:${assertjVersion}")
-    testCompile("org.seleniumhq.selenium:selenium-java:${seleniumVersion}")
-    testCompile("com.google.guava:guava:${guavaVersion}")
-    testCompile("io.rest-assured:rest-assured:${restAssuredVersion}")
-    testCompile project(':')
-}
-
-configurations.all {
-    resolutionStrategy {
-        force "com.google.guava:guava:${guavaVersion}"
-    }
+    testImplementation("org.springframework.boot:spring-boot-starter-test:${springBootVersion}")
+    testImplementation("org.assertj:assertj-core:${assertjVersion}")
+    testImplementation("org.seleniumhq.selenium:selenium-java:${seleniumVersion}")
+    testImplementation("io.rest-assured:rest-assured:${restAssuredVersion}")
+    testImplementation("io.rest-assured:json-path:${restAssuredVersion}")
+    testImplementation("org.junit.jupiter:junit-jupiter:${junitVersion}")
+    testImplementation project(':')
 }
 
 test {
+    useJUnitPlatform()
+    testLogging {
+        events "passed", "skipped", "failed"
+    }
     systemProperties = System.properties.stringPropertyNames().collectEntries {
         [(it): System.getProperty(it)]
     }
 }
 
 bootJar {
-    baseName = 'feature-toggle-testing-with-spring-boot'
+    archiveBaseName = 'feature-toggle-testing-with-spring-boot'
     classifier = "exec"
-    version = "$appVersion"
+    archiveVersion = "$appVersion"
 }
 
 bootRun {
@@ -62,6 +60,6 @@ bootRun {
 
 jar {
     enabled = true
-    baseName = 'feature-toggle-testing-with-spring-boot'
-    version = "$appVersion"
+    archiveBaseName = 'feature-toggle-testing-with-spring-boot'
+    archiveVersion = "$appVersion"
 }

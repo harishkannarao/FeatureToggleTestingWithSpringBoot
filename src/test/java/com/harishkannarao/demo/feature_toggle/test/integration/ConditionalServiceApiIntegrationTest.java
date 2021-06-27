@@ -1,6 +1,6 @@
 package com.harishkannarao.demo.feature_toggle.test.integration;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 public class ConditionalServiceApiIntegrationTest extends AbstractBaseIntegrationTest {
 

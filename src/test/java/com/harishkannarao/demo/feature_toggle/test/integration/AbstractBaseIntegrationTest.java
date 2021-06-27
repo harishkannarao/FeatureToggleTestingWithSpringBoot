@@ -5,9 +5,9 @@ import com.harishkannarao.demo.feature_toggle.test.configuration.IntegrationTest
 import com.harishkannarao.demo.feature_toggle.test.factory.PageObjectFactory;
 import com.harishkannarao.demo.feature_toggle.test.factory.RestClientFactory;
 import com.harishkannarao.demo.feature_toggle.test.factory.WebDriverFactory;
-import org.junit.After;
-import org.junit.Before;
-import org.junit.BeforeClass;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 
@@ -44,12 +44,12 @@ public abstract class AbstractBaseIntegrationTest {
         restartApplicationWithProperties("--conditional-service.name=default");
     }
 
-    @Before
+    @BeforeEach
     public void resetApplication() {
         restartApplicationWithDefaultProperties();
     }
 
-    @After
+    @AfterEach
     public void globalTearDown() {
         webDriverFactory.closeAllWebDrivers();
     }
@@ -60,7 +60,7 @@ public abstract class AbstractBaseIntegrationTest {
     }
 
     @SuppressWarnings("WeakerAccess")
-    @BeforeClass
+    @BeforeAll
     public static void restartApplicationWithDefaultProperties() {
         if (!runningDefaultApplication) {
             runningDefaultApplication = true;

@@ -1,10 +1,10 @@
 sudo: required
-dist: trusty
+dist: bionic
 
 language: java
 
 jdk:
-  - oraclejdk9
+  - oraclejdk11
 
 install:
   - sudo apt-get -qq update
