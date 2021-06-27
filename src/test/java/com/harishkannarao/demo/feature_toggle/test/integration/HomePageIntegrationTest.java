@@ -2,39 +2,26 @@ package com.harishkannarao.demo.feature_toggle.test.integration;
 
 import org.junit.jupiter.api.Test;
 
+import java.util.Collections;
+import java.util.List;
+
 import static com.harishkannarao.demo.feature_toggle.test.constants.TestProducts.*;
 
-public class HomePageIntegrationTest extends AbstractBaseIntegrationTest {
+class HomePageDisplayingHiddenProductsIntegrationTest extends AbstractBaseIntegrationTest {
+    @Override
+    protected List<String> getTestProperties() {
+        return Collections.singletonList("--application-config.display-hidden-products=true");
+    }
 
     @Test
     public void should_display_banner_message_when_enabled_through_property() {
-        displayHiddenProducts();
-
         pageObjectFactory.homePage()
                 .navigate()
                 .expectBannerMessage("New products available for sale !!!");
     }
 
     @Test
-    public void should_not_display_banner_message_when_disabled_through_property() {
-        doNotDisplayHiddenProducts();
-
-        pageObjectFactory.homePage()
-                .navigate()
-                .expectNoBannerMessage();
-    }
-
-    @Test
-    public void should_not_display_banner_message_as_default_behaviour() {
-        pageObjectFactory.homePage()
-                .navigate()
-                .expectNoBannerMessage();
-    }
-
-    @Test
     public void should_display_hidden_products_when_enabled_through_property() {
-        displayHiddenProducts();
-
         pageObjectFactory.homePage()
                 .navigate()
                 .expectTotalProductsDisplayedOnPageToBe(4)
@@ -43,16 +30,37 @@ public class HomePageIntegrationTest extends AbstractBaseIntegrationTest {
                 .expectProductIsDisplayedOnPage(PEARS_YPHONE)
                 .expectProductIsDisplayedOnPage(PEARS_YPAD);
     }
+}
+
+class HomePageNotDisplayingHiddenProductsIntegrationTest extends AbstractBaseIntegrationTest {
+    @Override
+    protected List<String> getTestProperties() {
+        return Collections.singletonList("--application-config.display-hidden-products=false");
+    }
+
+    @Test
+    public void should_not_display_banner_message_when_disabled_through_property() {
+        pageObjectFactory.homePage()
+                .navigate()
+                .expectNoBannerMessage();
+    }
 
     @Test
     public void should_not_display_hidden_products_when_disabled_through_property() {
-        doNotDisplayHiddenProducts();
-
         pageObjectFactory.homePage()
                 .navigate()
                 .expectTotalProductsDisplayedOnPageToBe(2)
                 .expectProductIsDisplayedOnPage(DOODLE_EXCEL)
                 .expectProductIsDisplayedOnPage(DODDLE_SUCCESS_7);
+    }
+}
+
+public class HomePageIntegrationTest extends AbstractBaseIntegrationTest {
+    @Test
+    public void should_not_display_banner_message_as_default_behaviour() {
+        pageObjectFactory.homePage()
+                .navigate()
+                .expectNoBannerMessage();
     }
 
     @Test
