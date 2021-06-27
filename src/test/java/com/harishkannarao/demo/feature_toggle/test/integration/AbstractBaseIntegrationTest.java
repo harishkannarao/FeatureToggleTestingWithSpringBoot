@@ -1,21 +1,22 @@
 package com.harishkannarao.demo.feature_toggle.test.integration;
 
-import com.harishkannarao.demo.feature_toggle.FeatureToggleTestingDemoApplication;
-import com.harishkannarao.demo.feature_toggle.test.configuration.IntegrationTestConfiguration;
 import com.harishkannarao.demo.feature_toggle.test.factory.PageObjectFactory;
 import com.harishkannarao.demo.feature_toggle.test.factory.RestClientFactory;
 import com.harishkannarao.demo.feature_toggle.test.factory.WebDriverFactory;
+import com.harishkannarao.demo.feature_toggle.test.runner.ShutdownExtension;
+import com.harishkannarao.demo.feature_toggle.test.runner.SpringBootTestRunner;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.BeforeEach;
-import org.springframework.boot.SpringApplication;
-import org.springframework.context.ConfigurableApplicationContext;
+import org.junit.jupiter.api.extension.ExtendWith;
 
+import java.util.Arrays;
+
+@ExtendWith({ShutdownExtension.class})
 public abstract class AbstractBaseIntegrationTest {
 
     private static final String[] defaultProperties = new String[]{};
     private static boolean runningDefaultApplication = false;
-    private static ConfigurableApplicationContext application;
     private static WebDriverFactory webDriverFactory;
     static PageObjectFactory pageObjectFactory;
     static RestClientFactory restClientFactory;
@@ -69,19 +70,13 @@ public abstract class AbstractBaseIntegrationTest {
     }
 
     private static void runApplicationWithProperties(String... args) {
-        if (application != null && application.isRunning()) {
-            SpringApplication.exit(application);
+        if (SpringBootTestRunner.getSingletonInstance().isRunning()) {
+            SpringBootTestRunner.getSingletonInstance().stop();
         }
-        application = SpringApplication.run(
-                new Class[]{
-                        FeatureToggleTestingDemoApplication.class,
-                        IntegrationTestConfiguration.class
-                },
-                args
-        );
-        webDriverFactory = application.getBean(WebDriverFactory.class);
-        pageObjectFactory = application.getBean(PageObjectFactory.class);
-        restClientFactory = application.getBean(RestClientFactory.class);
+        SpringBootTestRunner.getSingletonInstance().start(Arrays.asList(args));
+        webDriverFactory = SpringBootTestRunner.getSingletonInstance().getBean(WebDriverFactory.class);
+        pageObjectFactory = SpringBootTestRunner.getSingletonInstance().getBean(PageObjectFactory.class);
+        restClientFactory = SpringBootTestRunner.getSingletonInstance().getBean(RestClientFactory.class);
     }
 
 }
