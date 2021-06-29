@@ -9,7 +9,7 @@ import static com.harishkannarao.demo.feature_toggle.test.constants.TestProducts
 
 class HomePageDisplayingHiddenProductsIntegrationTest extends AbstractBaseIntegrationTest {
     @Override
-    protected List<String> getTestProperties() {
+    protected List<String> getOverriddenProperties() {
         return Collections.singletonList("--application-config.display-hidden-products=true");
     }
 
@@ -34,7 +34,7 @@ class HomePageDisplayingHiddenProductsIntegrationTest extends AbstractBaseIntegr
 
 class HomePageNotDisplayingHiddenProductsIntegrationTest extends AbstractBaseIntegrationTest {
     @Override
-    protected List<String> getTestProperties() {
+    protected List<String> getOverriddenProperties() {
         return Collections.singletonList("--application-config.display-hidden-products=false");
     }
 

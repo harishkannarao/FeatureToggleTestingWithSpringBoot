@@ -8,7 +8,7 @@ import java.util.List;
 
 class ConditionalApiEnabledIntegrationTest extends AbstractBaseIntegrationTest {
     @Override
-    protected List<String> getTestProperties() {
+    protected List<String> getOverriddenProperties() {
         return Collections.singletonList("--conditional-api.enabled=true");
     }
 
@@ -23,7 +23,7 @@ class ConditionalApiEnabledIntegrationTest extends AbstractBaseIntegrationTest {
 
 class ConditionalApiDisabledIntegrationTest extends AbstractBaseIntegrationTest {
     @Override
-    protected List<String> getTestProperties() {
+    protected List<String> getOverriddenProperties() {
         return Collections.singletonList("--conditional-api.enabled=false");
     }
 

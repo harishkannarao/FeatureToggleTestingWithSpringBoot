@@ -7,7 +7,7 @@ import java.util.List;
 
 class ConditionalServiceApiWithDifferentNameIntegrationTest extends AbstractBaseIntegrationTest {
     @Override
-    protected List<String> getTestProperties() {
+    protected List<String> getOverriddenProperties() {
         return Collections.singletonList("--conditional-service.name=different");
     }
 
@@ -22,7 +22,7 @@ class ConditionalServiceApiWithDifferentNameIntegrationTest extends AbstractBase
 
 class ConditionalServiceApiWithDefaultNameIntegrationTest extends AbstractBaseIntegrationTest {
     @Override
-    protected List<String> getTestProperties() {
+    protected List<String> getOverriddenProperties() {
         return Collections.singletonList("--conditional-service.name=default");
     }
 

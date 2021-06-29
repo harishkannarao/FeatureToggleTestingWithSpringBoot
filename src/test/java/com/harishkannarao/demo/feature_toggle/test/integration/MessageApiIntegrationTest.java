@@ -7,7 +7,7 @@ import java.util.List;
 
 class MessageApiDisplayingHiddenProductsIntegrationTest extends AbstractBaseIntegrationTest {
     @Override
-    protected List<String> getTestProperties() {
+    protected List<String> getOverriddenProperties() {
         return Collections.singletonList("--application-config.display-hidden-products=true");
     }
 
@@ -22,7 +22,7 @@ class MessageApiDisplayingHiddenProductsIntegrationTest extends AbstractBaseInte
 
 class MessageApiNotDisplayingHiddenProductsIntegrationTest extends AbstractBaseIntegrationTest {
     @Override
-    protected List<String> getTestProperties() {
+    protected List<String> getOverriddenProperties() {
         return Collections.singletonList("--application-config.display-hidden-products=false");
     }
 

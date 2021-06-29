@@ -10,6 +10,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -20,8 +21,19 @@ public abstract class AbstractBaseIntegrationTest {
     protected PageObjectFactory pageObjectFactory;
     protected RestClientFactory restClientFactory;
 
-    protected List<String> getTestProperties() {
+    protected List<String> getOverriddenProperties() {
         return Collections.emptyList();
+    }
+
+    private List<String> getFixedProperties() {
+        return List.of("--spring.profiles.active=int-test");
+    }
+
+    private List<String> getTestProperties() {
+        List<String> result = new ArrayList<>();
+        result.addAll(getFixedProperties());
+        result.addAll(getOverriddenProperties());
+        return result;
     }
 
     @BeforeEach
