@@ -21,40 +21,9 @@ This repository is to demonstrate feature toggle functional testing (developer's
 [Feature Toggle Integration Testing with Spring Boot](https://blogs.harishkannarao.com/2018/04/feature-toggle-integration-testing-with.html)
 
 #### Sample integration tests
-`com.harishkannarao.demo.feature_toggle.test.integration.HomePageIntegrationTest` tests the behaviour of a web page with feature toggle enabled and disabled.
+`src/test/java/com/harishkannarao/demo/feature_toggle/test/integration/HomePageIntegrationTest.java` tests the behaviour of a web page with feature toggle enabled and disabled.
 
-`com.harishkannarao.demo.feature_toggle.test.integration.ProductsApiIntegrationTest` tests the behaviour of an api with feature toggle enabled and disabled.
-
-#### Configurations / Setup for testing
-
-The following methods in `com.harishkannarao.demo.feature_toggle.test.integration.AbstractBaseIntegrationTest` allows to start or reset the spring boot application to default configuration and the test can restart the application with different set of properties to enable / disable a feature and test the application.
-
-```
-    // other code
-    @Before
-    public void resetApplication() {
-        restartApplicationWithDefaultProperties();
-    }
-    
-    @SuppressWarnings("WeakerAccess")
-    @BeforeClass
-    public static void restartApplicationWithDefaultProperties() {
-        if (!runningDefaultApplication) {
-            runningDefaultApplication = true;
-            runApplicationWithProperties(defaultProperties);
-        }
-    }
-    
-    void displayHiddenProducts() {
-        restartApplicationWithProperties("--application-config.display-hidden-products=true");
-    }
-    
-    private static void runApplicationWithProperties(String... args) {
-        // some content
-    }
-
-    // other code
-```
+`src/test/java/com/harishkannarao/demo/feature_toggle/test/integration/ProductsApiIntegrationTest.java` tests the behaviour of an api with feature toggle enabled and disabled.
 
 ## Running the build
 Note: For gradle users on Windows, please use **gradlew.bat** instead of **./gradlew** in the following commands

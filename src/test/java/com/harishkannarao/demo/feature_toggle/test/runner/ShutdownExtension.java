@@ -22,6 +22,6 @@ public class ShutdownExtension implements BeforeAllCallback, ExtensionContext.St
 
     @Override
     public void close() {
-        SpringBootTestRunner.getSingletonInstance().stop();
+        SpringBootTestRunner.stop();
     }
 }

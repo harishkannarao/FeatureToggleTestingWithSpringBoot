@@ -26,16 +26,16 @@ public abstract class AbstractBaseIntegrationTest {
 
     @BeforeEach
     public void resetApplication() {
-        if (!SpringBootTestRunner.getSingletonInstance().isRunning()) {
-            SpringBootTestRunner.getSingletonInstance().start(getTestProperties());
+        if (!SpringBootTestRunner.isRunning()) {
+            SpringBootTestRunner.start(getTestProperties());
         } else {
-            if (!CollectionUtils.isEqualCollection(getTestProperties(), SpringBootTestRunner.getSingletonInstance().getProperties())) {
-                SpringBootTestRunner.getSingletonInstance().restart(getTestProperties());
+            if (!CollectionUtils.isEqualCollection(getTestProperties(), SpringBootTestRunner.getProperties())) {
+                SpringBootTestRunner.restart(getTestProperties());
             }
         }
-        webDriverFactory = SpringBootTestRunner.getSingletonInstance().getBean(WebDriverFactory.class);
-        pageObjectFactory = SpringBootTestRunner.getSingletonInstance().getBean(PageObjectFactory.class);
-        restClientFactory = SpringBootTestRunner.getSingletonInstance().getBean(RestClientFactory.class);
+        webDriverFactory = SpringBootTestRunner.getBean(WebDriverFactory.class);
+        pageObjectFactory = SpringBootTestRunner.getBean(PageObjectFactory.class);
+        restClientFactory = SpringBootTestRunner.getBean(RestClientFactory.class);
     }
 
     @AfterEach

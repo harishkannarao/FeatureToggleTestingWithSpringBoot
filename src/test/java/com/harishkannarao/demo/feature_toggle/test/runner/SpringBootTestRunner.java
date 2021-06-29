@@ -14,39 +14,33 @@ import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
 public class SpringBootTestRunner {
-    private static final SpringBootTestRunner INSTANCE = new SpringBootTestRunner();
+    private static ConfigurableApplicationContext context;
+    private static String[] properties;
 
-    public static SpringBootTestRunner getSingletonInstance() {
-        return INSTANCE;
-    }
-
-    private ConfigurableApplicationContext context;
-    private String[] properties;
-
-    public void stop() {
+    public static void stop() {
         if (isRunning()) {
             SpringApplication.exit(context);
         }
     }
 
-    public void start(List<String> properties) {
-        String[] propertiesArray = properties.toArray(String[]::new);
+    public static void start(List<String> args) {
+        String[] propertiesArray = args.toArray(String[]::new);
         context = SpringApplication.run(FeatureToggleTestingDemoApplication.class, propertiesArray);
-        this.properties = propertiesArray;
+        properties = propertiesArray;
     }
 
-    public void restart(List<String> properties) {
+    public static void restart(List<String> properties) {
         stop();
         start(properties);
     }
 
-    public boolean isRunning() {
+    public static boolean isRunning() {
         return Optional.ofNullable(context)
                 .map(Lifecycle::isRunning)
                 .orElse(false);
     }
 
-    public List<String> getProperties() {
+    public static List<String> getProperties() {
         if (properties != null) {
             return Stream.of(properties).collect(Collectors.toList());
         } else {
@@ -54,7 +48,7 @@ public class SpringBootTestRunner {
         }
     }
 
-    public <T> T getBean(Class<T> clazz) {
+    public static <T> T getBean(Class<T> clazz) {
         return context.getBean(clazz);
     }
 }
