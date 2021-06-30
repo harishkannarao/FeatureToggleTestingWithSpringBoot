@@ -45,9 +45,9 @@ public abstract class AbstractBaseIntegrationTest {
                 SpringBootTestRunner.restart(getTestProperties());
             }
         }
-        webDriverFactory = SpringBootTestRunner.getBean(WebDriverFactory.class);
-        pageObjectFactory = SpringBootTestRunner.getBean(PageObjectFactory.class);
-        restClientFactory = SpringBootTestRunner.getBean(RestClientFactory.class);
+        webDriverFactory = new WebDriverFactory();
+        pageObjectFactory = new PageObjectFactory(SpringBootTestRunner.getApplicationUrl(), webDriverFactory);
+        restClientFactory = new RestClientFactory(SpringBootTestRunner.getApplicationUrl());
     }
 
     @AfterEach

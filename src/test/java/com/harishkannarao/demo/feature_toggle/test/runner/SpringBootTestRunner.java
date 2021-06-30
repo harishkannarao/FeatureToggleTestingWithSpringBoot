@@ -1,11 +1,10 @@
 package com.harishkannarao.demo.feature_toggle.test.runner;
 
 import com.harishkannarao.demo.feature_toggle.FeatureToggleTestingDemoApplication;
-import com.harishkannarao.demo.feature_toggle.test.configuration.IntegrationTestConfiguration;
-import org.assertj.core.util.Arrays;
 import org.springframework.boot.SpringApplication;
 import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.Lifecycle;
+import org.springframework.core.env.Environment;
 
 import java.util.Collections;
 import java.util.List;
@@ -50,5 +49,13 @@ public class SpringBootTestRunner {
 
     public static <T> T getBean(Class<T> clazz) {
         return context.getBean(clazz);
+    }
+
+    public static String getPort() {
+        return getBean(Environment.class).getProperty("local.server.port");
+    }
+
+    public static String getApplicationUrl() {
+        return String.format("http://localhost:%s", getPort());
     }
 }
