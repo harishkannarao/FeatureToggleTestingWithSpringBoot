@@ -55,6 +55,10 @@ With feature toggled off (default behaviour)
 With feature toggled on
     
     ./gradlew bootRun -Dapplication-config.display-hidden-products=true
+
+With integration test configuration
+
+     ./gradlew runLocal -Dapplication-config.display-hidden-products=true
     
 ###### Application url
 

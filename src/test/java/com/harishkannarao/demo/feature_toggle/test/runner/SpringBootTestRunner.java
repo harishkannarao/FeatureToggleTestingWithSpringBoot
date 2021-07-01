@@ -6,6 +6,7 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.Lifecycle;
 import org.springframework.core.env.Environment;
 
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
 import java.util.Optional;
@@ -20,6 +21,10 @@ public class SpringBootTestRunner {
         if (isRunning()) {
             SpringApplication.exit(context);
         }
+    }
+
+    public static void main(String[] args) {
+        start(Arrays.asList(args));
     }
 
     public static void start(List<String> args) {

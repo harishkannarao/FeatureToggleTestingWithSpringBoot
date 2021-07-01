@@ -48,7 +48,7 @@ allprojects {
     tasks.withType<Test> {
         useJUnitPlatform()
         testLogging.events = setOf(TestLogEvent.FAILED, TestLogEvent.SKIPPED, TestLogEvent.PASSED)
-        val properties = System.getProperties().entries.map { it.key.toString() to it.value }.toMap()
+        val properties = System.getProperties().entries.associate { it.key.toString() to it.value }
         systemProperties(properties)
     }
 
@@ -60,5 +60,14 @@ allprojects {
     tasks.getByName<Jar>("jar") {
         archiveClassifier.set("")
         archiveVersion.set(appVersion)
+    }
+
+    task<JavaExec>("runLocal") {
+        description = "Runs application using integration test configuration"
+        classpath = sourceSets["test"].runtimeClasspath
+        mainClass.set("com.harishkannarao.demo.feature_toggle.test.runner.SpringBootTestRunner")
+        args(listOf("--spring.profiles.active=int-test", "--server.port=8080"))
+        val properties = System.getProperties().entries.associate { it.key.toString() to it.value }
+        systemProperties(properties)
     }
 }
