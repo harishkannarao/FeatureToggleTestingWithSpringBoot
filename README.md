@@ -46,6 +46,10 @@ With feature toggled off (default behaviour)
 With feature toggled on
 
     mvn spring-boot:run -Dspring-boot.run.jvmArguments="-Dapplication-config.display-hidden-products=true"
+
+With integration test configuration
+
+    mvn test-compile exec:java@run-local -Dapplication-config.display-hidden-products=true
     
 ###### For Gradle users
 With feature toggled off (default behaviour)
