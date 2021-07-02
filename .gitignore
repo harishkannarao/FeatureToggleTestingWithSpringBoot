@@ -9,3 +9,6 @@ target
 # Ignore Gradle files
 build
 .gradle
+
+# Ignore sdkman file
+.sdkmanrc
