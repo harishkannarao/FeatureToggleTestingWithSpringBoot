@@ -2,8 +2,8 @@
 
 This repository is to demonstrate feature toggle functional testing (developer's integration testing) with Spring Boot. Spring boot and dependency injection is used in this repository, still the code can be ported to projects using no frameworks or other frameworks.
 
-## Travis CI Build status
-[![Build Status](https://travis-ci.org/harishkannarao/FeatureToggleTestingWithSpringBoot.svg?branch=master)](https://travis-ci.org/harishkannarao/FeatureToggleTestingWithSpringBoot)
+## Github Actions Build status
+[![Build Status](https://github.com/harishkannarao/FeatureToggleTestingWithSpringBoot/workflows/CI-master/badge.svg)](https://github.com/harishkannarao/FeatureToggleTestingWithSpringBoot/actions?query=workflow%3ACI-master)
 
 ## Required Softwares, Tools and Version
 * Java JDK Version: 11
