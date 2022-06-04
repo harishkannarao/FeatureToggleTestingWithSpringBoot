@@ -6,16 +6,12 @@ import org.springframework.context.ConfigurableApplicationContext;
 import org.springframework.context.Lifecycle;
 import org.springframework.core.env.Environment;
 
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
 import java.util.Optional;
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
+import java.util.Properties;
 
 public class SpringBootTestRunner {
     private static ConfigurableApplicationContext context;
-    private static String[] properties;
+    private static Properties properties;
 
     public static void stop() {
         if (isRunning()) {
@@ -23,17 +19,13 @@ public class SpringBootTestRunner {
         }
     }
 
-    public static void main(String[] args) {
-        start(Arrays.asList(args));
+    public static void start(Properties value) {
+        String[] args = value.entrySet().stream().map(entry -> String.format("--%s=%s", entry.getKey(), entry.getValue())).toArray(String[]::new);
+        context = SpringApplication.run(FeatureToggleTestingDemoApplication.class, args);
+        properties = value;
     }
 
-    public static void start(List<String> args) {
-        String[] propertiesArray = args.toArray(String[]::new);
-        context = SpringApplication.run(FeatureToggleTestingDemoApplication.class, propertiesArray);
-        properties = propertiesArray;
-    }
-
-    public static void restart(List<String> properties) {
+    public static void restart(Properties properties) {
         stop();
         start(properties);
     }
@@ -44,12 +36,8 @@ public class SpringBootTestRunner {
                 .orElse(false);
     }
 
-    public static List<String> getProperties() {
-        if (properties != null) {
-            return Stream.of(properties).collect(Collectors.toList());
-        } else {
-            return Collections.emptyList();
-        }
+    public static Properties getProperties() {
+        return properties;
     }
 
     public static <T> T getBean(Class<T> clazz) {

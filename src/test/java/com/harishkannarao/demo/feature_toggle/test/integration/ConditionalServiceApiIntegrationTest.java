@@ -2,13 +2,14 @@ package com.harishkannarao.demo.feature_toggle.test.integration;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.Properties;
 
 class ConditionalServiceApiWithDifferentNameIntegrationTest extends AbstractBaseIntegrationTest {
     @Override
-    protected List<String> getOverriddenProperties() {
-        return Collections.singletonList("--conditional-service.name=different");
+    protected Properties getOverriddenProperties() {
+        Properties value = new Properties();
+        value.put("conditional-service.name", "different");
+        return value;
     }
 
     @Test
@@ -21,9 +22,12 @@ class ConditionalServiceApiWithDifferentNameIntegrationTest extends AbstractBase
 }
 
 class ConditionalServiceApiWithDefaultNameIntegrationTest extends AbstractBaseIntegrationTest {
+
     @Override
-    protected List<String> getOverriddenProperties() {
-        return Collections.singletonList("--conditional-service.name=default");
+    protected Properties getOverriddenProperties() {
+        Properties value = new Properties();
+        value.put("conditional-service.name", "default");
+        return value;
     }
 
     @Test

@@ -5,14 +5,11 @@ import com.harishkannarao.demo.feature_toggle.test.factory.RestClientFactory;
 import com.harishkannarao.demo.feature_toggle.test.factory.WebDriverFactory;
 import com.harishkannarao.demo.feature_toggle.test.runner.ShutdownExtension;
 import com.harishkannarao.demo.feature_toggle.test.runner.SpringBootTestRunner;
-import org.apache.commons.collections4.CollectionUtils;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.extension.ExtendWith;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.Properties;
 
 @ExtendWith({ShutdownExtension.class})
 public abstract class AbstractBaseIntegrationTest {
@@ -21,19 +18,20 @@ public abstract class AbstractBaseIntegrationTest {
     protected PageObjectFactory pageObjectFactory;
     protected RestClientFactory restClientFactory;
 
-    protected List<String> getOverriddenProperties() {
-        return Collections.emptyList();
+    protected Properties getOverriddenProperties() {
+        return new Properties();
     }
 
-    private List<String> getFixedProperties() {
-        return List.of("--spring.profiles.active=int-test");
+    private Properties getFixedProperties() {
+        Properties value = new Properties();
+        value.put("spring.profiles.active", "int-test");
+        return value;
     }
 
-    private List<String> getTestProperties() {
-        List<String> result = new ArrayList<>();
-        result.addAll(getFixedProperties());
-        result.addAll(getOverriddenProperties());
-        return result;
+    private Properties getTestProperties() {
+        Properties value = new Properties(getFixedProperties());
+        value.putAll(getOverriddenProperties());
+        return value;
     }
 
     @BeforeEach
@@ -41,7 +39,7 @@ public abstract class AbstractBaseIntegrationTest {
         if (!SpringBootTestRunner.isRunning()) {
             SpringBootTestRunner.start(getTestProperties());
         } else {
-            if (!CollectionUtils.isEqualCollection(getTestProperties(), SpringBootTestRunner.getProperties())) {
+            if (!getTestProperties().equals(SpringBootTestRunner.getProperties())) {
                 SpringBootTestRunner.restart(getTestProperties());
             }
         }

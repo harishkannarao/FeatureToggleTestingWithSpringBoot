@@ -2,15 +2,16 @@ package com.harishkannarao.demo.feature_toggle.test.integration;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.Properties;
 
 import static com.harishkannarao.demo.feature_toggle.test.constants.TestProducts.*;
 
 class ProductsApiDisplayingHiddenProductsIntegrationTest extends AbstractBaseIntegrationTest {
     @Override
-    protected List<String> getOverriddenProperties() {
-        return Collections.singletonList("--application-config.display-hidden-products=true");
+    protected Properties getOverriddenProperties() {
+        Properties value = new Properties();
+        value.put("application-config.display-hidden-products", "true");
+        return value;
     }
 
     @Test
@@ -28,8 +29,10 @@ class ProductsApiDisplayingHiddenProductsIntegrationTest extends AbstractBaseInt
 
 class ProductsApiNotDisplayingHiddenProductsIntegrationTest extends AbstractBaseIntegrationTest {
     @Override
-    protected List<String> getOverriddenProperties() {
-        return Collections.singletonList("--application-config.display-hidden-products=false");
+    protected Properties getOverriddenProperties() {
+        Properties value = new Properties();
+        value.put("application-config.display-hidden-products", "false");
+        return value;
     }
 
     @Test

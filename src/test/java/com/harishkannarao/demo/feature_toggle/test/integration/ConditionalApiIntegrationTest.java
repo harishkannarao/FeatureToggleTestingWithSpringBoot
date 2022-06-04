@@ -3,13 +3,14 @@ package com.harishkannarao.demo.feature_toggle.test.integration;
 
 import org.junit.jupiter.api.Test;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.Properties;
 
 class ConditionalApiEnabledIntegrationTest extends AbstractBaseIntegrationTest {
     @Override
-    protected List<String> getOverriddenProperties() {
-        return Collections.singletonList("--conditional-api.enabled=true");
+    protected Properties getOverriddenProperties() {
+        Properties value = new Properties();
+        value.put("conditional-api.enabled", "true");
+        return value;
     }
 
     @Test
@@ -23,8 +24,10 @@ class ConditionalApiEnabledIntegrationTest extends AbstractBaseIntegrationTest {
 
 class ConditionalApiDisabledIntegrationTest extends AbstractBaseIntegrationTest {
     @Override
-    protected List<String> getOverriddenProperties() {
-        return Collections.singletonList("--conditional-api.enabled=false");
+    protected Properties getOverriddenProperties() {
+        Properties value = new Properties();
+        value.put("conditional-api.enabled", "false");
+        return value;
     }
 
     @Test
