@@ -15,6 +15,7 @@ val assertjVersion: String by project
 val restAssuredVersion: String by project
 val bootstrapVersion: String by project
 val junitVersion: String by project
+val junitPlatformLauncherVersion: String by project
 val commonsCollectionVersion: String by project
 
 java.sourceCompatibility = JavaVersion.toVersion(javaVersion)
@@ -42,6 +43,7 @@ allprojects {
         testImplementation("io.rest-assured:rest-assured:${restAssuredVersion}")
         testImplementation("io.rest-assured:json-path:${restAssuredVersion}")
         testImplementation("org.junit.jupiter:junit-jupiter:${junitVersion}")
+        testImplementation("org.junit.platform:junit-platform-launcher:$junitPlatformLauncherVersion")
         testImplementation("org.apache.commons:commons-collections4:${commonsCollectionVersion}")
     }
 

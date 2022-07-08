@@ -3,15 +3,12 @@ package com.harishkannarao.demo.feature_toggle.test.integration;
 import com.harishkannarao.demo.feature_toggle.test.factory.PageObjectFactory;
 import com.harishkannarao.demo.feature_toggle.test.factory.RestClientFactory;
 import com.harishkannarao.demo.feature_toggle.test.factory.WebDriverFactory;
-import com.harishkannarao.demo.feature_toggle.test.runner.ShutdownExtension;
 import com.harishkannarao.demo.feature_toggle.test.runner.SpringBootTestRunner;
 import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.extension.ExtendWith;
 
 import java.util.Properties;
 
-@ExtendWith({ShutdownExtension.class})
 public abstract class AbstractBaseIntegrationTest {
 
     private WebDriverFactory webDriverFactory;
