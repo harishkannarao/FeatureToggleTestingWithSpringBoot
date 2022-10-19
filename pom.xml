@@ -94,11 +94,17 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-surefire-plugin</artifactId>
+                <configuration>
+                    <reportFormat>plain</reportFormat>
+                </configuration>
             </plugin>
 
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
+                <configuration>
+                    <reportFormat>plain</reportFormat>
+                </configuration>
                 <executions>
                     <execution>
                         <goals>
@@ -124,7 +130,7 @@
                             <goal>java</goal>
                         </goals>
                         <configuration>
-                            <mainClass>com.harishkannarao.demo.feature_toggle.test.runner.SpringBootTestRunner</mainClass>
+                            <mainClass>com.harishkannarao.demo.feature_toggle.test.runner.SpringBootLocalRunner</mainClass>
                             <classpathScope>test</classpathScope>
                             <arguments>
                                 <argument>--spring.profiles.active=int-test</argument>

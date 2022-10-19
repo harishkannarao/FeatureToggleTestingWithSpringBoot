@@ -21,8 +21,12 @@ public class SpringBootTestRunner {
 
     public static void start(Properties value) {
         String[] args = value.entrySet().stream().map(entry -> String.format("--%s=%s", entry.getKey(), entry.getValue())).toArray(String[]::new);
-        context = SpringApplication.run(FeatureToggleTestingDemoApplication.class, args);
+        start(args);
         properties = value;
+    }
+
+    public static void start(String[] args) {
+        context = SpringApplication.run(FeatureToggleTestingDemoApplication.class, args);
     }
 
     public static void restart(Properties properties) {

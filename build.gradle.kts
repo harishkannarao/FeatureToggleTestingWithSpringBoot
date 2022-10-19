@@ -66,7 +66,7 @@ allprojects {
 
     task<JavaExec>("runLocal") {
         description = "Runs application locally"
-        mainClass.set("com.harishkannarao.demo.feature_toggle.test.runner.SpringBootTestRunner")
+        mainClass.set("com.harishkannarao.demo.feature_toggle.test.runner.SpringBootLocalRunner")
         classpath = sourceSets["test"].runtimeClasspath
         args(listOf("--spring.profiles.active=int-test", "--server.port=8080"))
         val properties = System.getProperties().entries.associate { it.key.toString() to it.value }
