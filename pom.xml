@@ -16,7 +16,7 @@
         <selenium.version>3.141.59</selenium.version>
         <assertj.version>3.20.2</assertj.version>
         <rest.assured.version>4.4.0</rest.assured.version>
-        <bootstrap.version>4.1.0</bootstrap.version>
+        <bootstrap.version>4.3.1</bootstrap.version>
         <junit.version>5.7.2</junit.version>
         <junit.platform.version>1.8.2</junit.platform.version>
         <commons.collection.version>4.4</commons.collection.version>
