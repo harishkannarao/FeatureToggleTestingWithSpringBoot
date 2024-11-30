@@ -6,6 +6,6 @@ set -e
 # Print the commands as it is executed. Useful for debugging
 set -x
 
-mvn clean install --batch-mode -DchromeDriverBinary=/usr/lib/chromium-browser/chromedriver -DchromeBinary=/usr/bin/chromium-browser -DchromeHeadless=true
+./mvnw clean install --batch-mode
 
-./gradlew clean build -DchromeDriverBinary=/usr/lib/chromium-browser/chromedriver -DchromeBinary=/usr/bin/chromium-browser -DchromeHeadless=true
+./gradlew clean build

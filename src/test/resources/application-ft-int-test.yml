@@ -1,0 +1,3 @@
+feature-flags:
+  display-hidden-products: true
+  enable-conditional-api: true

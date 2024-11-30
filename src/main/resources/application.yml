@@ -1,2 +1,7 @@
-application-config:
-  display-hidden-products: false
+spring:
+  application:
+    name: feature_toggle
+
+feature-flags:
+  display-hidden-products: ${FEATURE_DISPLAY_HIDDEN_PRODUCTS:false}
+  enable-conditional-api: ${FEATURE_ENABLE_CONDITIONAL_API:false}
