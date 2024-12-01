@@ -50,6 +50,7 @@
                 <artifactId>maven-surefire-plugin</artifactId>
                 <configuration>
                     <skip>${skipUnitTests}</skip>
+                    <redirectTestOutputToFile>true</redirectTestOutputToFile>
                     <excludes>
                         <exclude>**/integration/**/*.java</exclude>
                         <exclude>**/ft_integration/**/*.java</exclude>
@@ -59,6 +60,9 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-failsafe-plugin</artifactId>
+                <configuration>
+                    <redirectTestOutputToFile>true</redirectTestOutputToFile>
+                </configuration>
                 <executions>
                     <execution>
                         <id>int-test</id>
