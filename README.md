@@ -103,7 +103,7 @@ With feature toggled on
 
 For production environments, the feature flags will be enabled or disabled using environment variables. This will be a convenient way to toggle features using environment variable and restart the application with zero downtime and without the need to redeploy the application.
 
-With spring boot `feature-flags.enable-conditional-api` property is represented by `FEATURE_FLAGS_ENABLE_CONDITIONAL_API` environment variable (i.e replace all '-' and '.' with '_')
+With spring boot `feature-flags.enable-conditional-api` property is represented by `FEATURE_FLAGS_ENABLE_CONDITIONAL_API` environment variable (i.e replace all '-' and '.' with '_') or `FEATURE_ENABLE_CONDITIONAL_API` as mapped in `application.yml`
 
 Set the environment variable
 
