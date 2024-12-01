@@ -25,7 +25,7 @@ public class TestRestTemplateConfiguration {
         return () -> {
             log.info("Initializing RestAssured only once on startup using @TestConfiguration and @Import annotations");
             final RequestSpecBuilder requestSpecBuilder = new RequestSpecBuilder();
-            requestSpecBuilder.setBaseUri("http://localhost:%s".formatted(testServerPort));
+            requestSpecBuilder.setBaseUri("http://localhost:%s/feature_toggle".formatted(testServerPort));
             requestSpecBuilder.log(LogDetail.ALL);
             final RequestSpecification requestSpecification = requestSpecBuilder.build();
 

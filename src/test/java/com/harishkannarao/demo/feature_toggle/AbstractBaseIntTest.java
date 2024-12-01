@@ -43,7 +43,7 @@ public abstract class AbstractBaseIntTest {
     public void initRestAssured() {
         log.info("Initializing RestAssured before every test using Junit's @BeforeEach with @Autowired");
         final RequestSpecBuilder requestSpecBuilder = new RequestSpecBuilder();
-        requestSpecBuilder.setBaseUri("http://localhost:%s".formatted(testServerPort));
+        requestSpecBuilder.setBaseUri("http://localhost:%s/feature_toggle".formatted(testServerPort));
         requestSpecBuilder.log(LogDetail.ALL);
         final RequestSpecification requestSpecification = requestSpecBuilder.build();
 

@@ -1,7 +1,9 @@
 spring:
   application:
     name: feature_toggle
-
+server:
+  servlet:
+    context-path: "/feature_toggle"
 feature-flags:
   display-hidden-products: ${FEATURE_DISPLAY_HIDDEN_PRODUCTS:false}
   enable-conditional-api: ${FEATURE_ENABLE_CONDITIONAL_API:false}

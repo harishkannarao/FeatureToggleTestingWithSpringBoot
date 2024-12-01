@@ -65,7 +65,7 @@ With feature toggle integration test configuration
 
 ###### Application url
 
-    http://localhost:8080
+    http://localhost:8080/feature_toggle
 
 ## Run the sample application using java
 
@@ -97,7 +97,7 @@ With feature toggled on
 
 ###### Application url
 
-    http://localhost:8080
+    http://localhost:8080/feature_toggle
 
 ## Feature toggling in production
 
