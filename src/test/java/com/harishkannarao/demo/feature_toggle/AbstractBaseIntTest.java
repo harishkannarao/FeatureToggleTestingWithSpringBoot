@@ -22,9 +22,6 @@ import org.springframework.test.util.TestSocketUtils;
         classes = {FeatureToggleApplication.class},
         webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT
 )
-@Import(value = {
-        TestRestTemplateConfiguration.class
-})
 public abstract class AbstractBaseIntTest {
 
     private static final Logger log = LoggerFactory.getLogger(AbstractBaseIntTest.class);
