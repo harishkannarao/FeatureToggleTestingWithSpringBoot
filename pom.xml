@@ -72,7 +72,6 @@
                         </goals>
                         <configuration>
                             <skip>${skipIntTests}</skip>
-                            <reportNameSuffix>int-test</reportNameSuffix>
                             <includes>
                                 <include>**/integration/**/*.java</include>
                             </includes>
@@ -86,7 +85,6 @@
                         </goals>
                         <configuration>
                             <skip>${skipFtIntTests}</skip>
-                            <reportNameSuffix>ft-int-test</reportNameSuffix>
                             <includes>
                                 <include>**/ft_integration/**/*.java</include>
                             </includes>
