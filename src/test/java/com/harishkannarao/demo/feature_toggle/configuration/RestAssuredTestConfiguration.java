@@ -16,9 +16,9 @@ import org.springframework.context.annotation.Bean;
 
 @TestConfiguration
 @ConditionalOnProperty(name = "test.server.port")
-public class TestRestTemplateConfiguration {
+public class RestAssuredTestConfiguration {
 
-    private static final Logger log = LoggerFactory.getLogger(TestRestTemplateConfiguration.class);
+    private static final Logger log = LoggerFactory.getLogger(RestAssuredTestConfiguration.class);
 
     @Bean
     public InitializingBean initRestAssured(@Value("${test.server.port}") int testServerPort) {

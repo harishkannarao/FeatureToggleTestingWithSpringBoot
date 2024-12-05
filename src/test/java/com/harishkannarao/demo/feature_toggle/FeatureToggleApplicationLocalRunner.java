@@ -1,13 +1,16 @@
 package com.harishkannarao.demo.feature_toggle;
 
+import com.harishkannarao.demo.feature_toggle.configuration.LocalTestConfiguration;
 import org.springframework.boot.SpringApplication;
-import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-@SpringBootApplication
 public class FeatureToggleApplicationLocalRunner {
 
 	public static void main(String[] args) {
-		SpringApplication.run(FeatureToggleApplication.class, args);
+		Class<?>[] classes = new Class[] {
+				FeatureToggleApplication.class,
+				LocalTestConfiguration.class
+		};
+		SpringApplication.run(classes, args);
 	}
 
 }

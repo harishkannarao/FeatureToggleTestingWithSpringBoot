@@ -48,7 +48,7 @@ With feature toggled on
 
 With feature toggle integration test configuration
 
-    ./mvnw test-compile exec:java@run-local-ft -Dfeature-flags.enable-conditional-api=true
+    ./mvnw clean compile test-compile exec:java@run-local-ft -Dfeature-flags.enable-conditional-api=true
 
 ###### For Gradle users
 With feature toggled off (default behaviour)
